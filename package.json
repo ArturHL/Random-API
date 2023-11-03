@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrations:generate": "sequelize-cli migration:generate --migrations-path ./db/migrations --name",
+    "migrations:run": "sequelize-cli db:migrate --config ./db/config.js --migrations-path ./db/migrations",
+    "migrations:revert": "sequelize-cli db:migrate:undo --config ./db/config.js --migrations-path ./db/migrations",
+    "migrations:delete": "sequelize-cli db:migrate:undo:all --config ./db/config.js --migrations-path ./db/migrations"
   },
   "keywords": [
     "Node",
@@ -18,6 +22,7 @@
   "devDependencies": {
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
+    "sequelize-cli": "^6.6.1",
     "standard": "^17.1.0"
   },
   "eslintConfig": {
@@ -26,8 +31,11 @@
   "dependencies": {
     "@hapi/boom": "^10.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "joi": "^17.11.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0"
   }
 }
